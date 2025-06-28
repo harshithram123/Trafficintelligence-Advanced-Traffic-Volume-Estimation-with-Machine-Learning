@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Traffic Volume Estimation</title>
+  <style>
+    body {
+      background-image: url('https://cdn.vox-cdn.com/thumbor/VOARJfEKVTp6iMSzW3ExPn06TDM=/0x78:3000:900/cdn.vox-cdn.com/uploads/chorus_image/image/44219366/72499026.0.0.jpg');
+      background-size: cover;
+      color: black;
+    }
+    .Login {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      margin: auto;
+      width: 60%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="Login">
+    <center><h1>Traffic Volume Estimation</h1></center>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <h2>Please enter the following details</h2>
+
+      <label for="holiday">Holiday:</label>
+      <select id="holiday" name="holiday" required>
+        <option value="7">None</option>
+        <option value="1">Columbus Day</option>
+        <option value="10">Veterans Day</option>
+        <option value="9">Thanksgiving Day</option>
+        <option value="0">Christmas Day</option>
+        <option value="6">New Year's Day</option>
+        <option value="11">Washington's Birthday</option>
+        <option value="5">Memorial Day</option>
+        <option value="2">Independence Day</option>
+        <option value="8">State Fair</option>
+        <option value="3">Labor Day</option>
+        <option value="4">Martin Luther King Jr Day</option>
+      </select><br><br>
+
+      <label for="temp">Temp:</label>
+      <input type="number" name="temp" placeholder="Temperature" required><br><br>
+
+      <label for="rain">Rain:</label>
+      <input type="number" name="rain" placeholder="Rain (0 or 1)" min="0" max="1" required><br><br>
+
+      <label for="snow">Snow:</label>
+      <input type="number" name="snow" placeholder="Snow (0 or 1)" min="0" max="1" required><br><br>
+
+      <label for="weather">Weather:</label>
+      <select id="weather" name="weather" required>
+        <option value="0">Clear</option>
+        <option value="1">Clouds</option>
+        <option value="2">Drizzle</option>
+        <option value="3">Fog</option>
+        <option value="4">Haze</option>
+        <option value="5">Mist</option>
+        <option value="6">Rain</option>
+        <option value="7">Smoke</option>
+        <option value="9">Squall</option>
+        <option value="10">Thunderstorm</option>
+        <option value="8">Snow</option>
+      </select><br><br>
+
+      <label for="year">Year:</label>
+      <input type="number" name="year" placeholder="Year" min="2012" max="2022" required><br><br>
+
+      <label for="month">Month:</label>
+      <input type="number" name="month" placeholder="Month" min="1" max="12" required><br><br>
+
+      <label for="day">Day:</label>
+      <input type="number" name="day" placeholder="Day" min="1" max="31" required><br><br>
+
+      <label for="hours">Hours:</label>
+      <input type="number" name="hours" placeholder="Hours" min="0" max="23" required><br><br>
+
+      <label for="minutes">Minutes:</label>
+      <input type="number" name="minutes" placeholder="Minutes" min="0" max="59" required><br><br>
+
+      <label for="seconds">Seconds:</label>
+      <input type="number" name="seconds" placeholder="Seconds" min="0" max="59" required><br><br>
+
+      <button type="submit" class="btn btn-primary" style="height:30px;width:200px">Predict</button>
+    </form>
+
+    <br>
+    {{ prediction_text }}
+    <br><br>
+
+    <!-- Optional image preview -->
+    <!-- <img src="{{ urlhttps://www.cityam.com/wp-content/uploads/2021/01/Jag_XF_21MY_Driving_270121_5421-1536x864-1.jpg }}" alt="Prediction Image" height="120" width="277" onerror="this.style.display='none'"> -->
+  </div>
+</body>
+</html>
